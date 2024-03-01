@@ -10,7 +10,7 @@ const db = require('./db');
 app.use(bodyParser.json());
 
 app.use(cors({
-    origin: 'https://karudata.netlify.app/',
+    origin: 'https://karudata.netlify.app',
 }));
 
 app.get('/jardins', async (req, res) => {
