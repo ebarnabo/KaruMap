@@ -3,19 +3,19 @@ const bodyParser = require('body-parser');
 const axios = require('axios');
 const cors = require('cors');
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 const db = require('./db');
 
 
 app.use(bodyParser.json());
 
 app.use(cors({
-    origin: 'https://karudata.netlify.app',
+    origin: process.env.CORS_ORIGIN,
 }));
 
 app.get('/jardins', async (req, res) => {
     try {
-        const apiJardins = 'https://www.karudata.com/api/explore/v2.1/catalog/datasets/liste-des-jardins-remarquables/records?limit=100';
+        const apiJardins = process.env.API_JARDINS_URL;
         const response = await axios.get(apiJardins);
         const jardins = response.data.results.map(jardin => ({
             nom_du_jardin: jardin.nom_du_jardin,
@@ -58,7 +58,7 @@ function coordonnes_correct(latitude, longitude) {
 
 app.get('/monuments', async (req, res) => {
     try {
-        const apiMonuments = 'https://www.karudata.com/api/explore/v2.1/catalog/datasets/les-lieux-remarquables-de-la-guadeloupe/records?limit=100';
+        const apiMonuments = process.env.API_MONUMENTS_URL;
         const response = await axios.get(apiMonuments);
         const monuments = response.data.results.map(monument => {
             // Conversion des valeurs de latitude et longitude en nombres flottants
@@ -205,5 +205,5 @@ app.post('/marqueurs', async (req, res) => {
     }
 });
 app.listen(port, () => {
-    console.log(`Server is listening at https://karudata.netlify.app:${port}`);
+    console.log(`Server is listening at process.env.CORS_ORIGIN:${port}`);
 });

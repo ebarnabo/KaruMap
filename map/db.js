@@ -8,15 +8,11 @@
 // });
 // module.exports = connection;
 
-
 const mysql = require('mysql');
-
-// Créez un pool de connexion en utilisant les variables d'environnement
 const connection = mysql.createPool({
-    host: process.env.DB_HOST,     // Variable d'environnement pour l'hôte
-    user: process.env.DB_USER,     // Variable d'environnement pour l'utilisateur
-    password: process.env.DB_PASS, // Variable d'environnement pour le mot de passe
-    database: process.env.DB_NAME  // Variable d'environnement pour le nom de la base
+    host: process.env.DB_HOST, // Remplacez 'localhost' par une variable d'environnement
+    user: process.env.DB_USER, // Remplacez 'map' par une variable d'environnement
+    password: process.env.DB_PASS, // Remplacez 'map' par une variable d'environnement
+    database: process.env.DB_NAME // Remplacez 'WBS' par une variable d'environnement
 });
-
 module.exports = connection;
