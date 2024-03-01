@@ -10,7 +10,7 @@ const db = require('./db');
 app.use(bodyParser.json());
 
 app.use(cors({
-    origin: 'http://localhost:8080',
+    origin: 'https://karudata.netlify.app/',
 }));
 
 app.get('/jardins', async (req, res) => {
@@ -205,5 +205,5 @@ app.post('/marqueurs', async (req, res) => {
     }
 });
 app.listen(port, () => {
-    console.log(`Server is listening at http://localhost:${port}`);
+    console.log(`Server is listening at https://karudata.netlify.app:${port}`);
 });
