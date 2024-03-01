@@ -360,12 +360,12 @@ export default {
   try {
     console.log('Début de l\'importation des données...');
     await Promise.all([
-      axios.get('http://localhost:3000/jardins'),
-      axios.get('http://localhost:3000/monuments')
+      axios.get('https://karudata.netlify.app:3000/jardins'),
+      axios.get('https://karudata.netlify.app:3000/monuments')
     ]);
     console.log('Import des données OK');
     
-    const marqueurs_données = await axios.get('http://localhost:3000/marqueurs');
+    const marqueurs_données = await axios.get('https://karudata.netlify.app:3000/marqueurs');
     console.log('Récupération des données des marqueurs OK', marqueurs_données.data);
 
     this.Marqueurs = marqueurs_données.data.map((marqueur) => {
@@ -389,7 +389,7 @@ export default {
     async Import_data() {
           try {
         console.log('Début de l\'importation des données des marqueurs...');
-        const marqueurs_données = await axios.get('http://localhost:3000/marqueurs');
+        const marqueurs_données = await axios.get('https://karudata.netlify.app:3000/marqueurs');
         console.log('Récupération des données des marqueurs OK', marqueurs_données.data);
 
         this.Marqueurs = marqueurs_données.data.map((marqueur) => {
@@ -461,7 +461,7 @@ export default {
     },
     Marqueur_Update(originalName) {
       const { name, code_postal, commune, type } = this.Marqueur_Select;
-      axios.put(`http://localhost:3000/marqueurs/${originalName}`, {
+      axios.put(`https://karudata.netlify.app:3000/marqueurs/${originalName}`, {
         new_nom: name,
         new_code_postal: code_postal ,
         new_commune: commune,
@@ -495,7 +495,7 @@ export default {
       }).then((result) => {
         if (result.isConfirmed) {
           this.Marqueurs.splice(index, 1);
-          axios.delete(`http://localhost:3000/marqueurs/${currentMarker.name}`)
+          axios.delete(`https://karudata.netlify.app:3000/marqueurs/${currentMarker.name}`)
             .then(() => {
               console.log('Suppression Marqueur OK');
               this.calculateStats();
@@ -609,7 +609,7 @@ export default {
       }
       console.log("Type de marqueur :", this.Marqueur_Select.type);
       axios
-        .post(`http://localhost:3000/marqueurs`, {
+        .post(`https://karudata.netlify.app:3000/marqueurs`, {
           type: this.Marqueur_Select.type,
           nom: this.Marqueur_Select.name,
           latitude: this.Marqueur_Select.coordinates[0],
@@ -677,7 +677,7 @@ export default {
     },
     async fetchMarqueurs() {
       try {
-        const response = await axios.get('http://localhost:3000/marqueurs');
+        const response = await axios.get('https://karudata.netlify.app:3000/marqueurs');
         this.marqueurs = response.data;
         this.calculateStats();
       } catch (error) {
