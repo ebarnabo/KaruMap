@@ -1,0 +1,860 @@
+/* Variables */
+$tl: 0.5s ease-in-out; // D
+// Palette de couleur du projet
+$primary: #5457f6 ;
+$secondary :#4ea165;
+$dark : #1c1c1c;
+$danger: #cc1c35;
+$light : #fafafa;
+$lune: #0D324D;
+$soleil: #ff6a00;
+$wazecolor: #67c9fa;
+
+// Taille des boutons du navbar
+$navbtn-size: 1.5;
+
+// Taille pour les mobiles
+$breakpoint-mobile: 768px;
+// Hauteur de la carte
+$map-height-desktop: 500px;
+$map-height-mobile: 400px;
+
+/* Fin variables */
+
+@font-face {
+    font-family: 'Gilroy ExtraBold';
+    src: url('~@/assets/fonts/Gilroy-ExtraBold.otf') format('opentype');
+}
+
+@font-face {
+    font-family: 'Gilroy Light';
+    src: url('~@/assets/fonts/Gilroy-Light.otf') format('opentype');
+}
+
+/* Mode clair */
+/* Styles pour le curseur */
+
+#magicPointer{
+ background-color: $secondary !important;
+}
+body #magicMouseCursor{
+border-color: $primary !important;
+border-width: 3px;
+//box-shadow: 0 0 0 5px $dark !important;
+}
+
+.l-map{
+  cursor: auto;
+}
+.slider{
+  cursor: pointer;
+}
+
+/* Styles écran de chargement */
+#splashScreen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: $light;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  opacity: 1;
+  transition: all $tl;
+}
+
+/* Styles pour l'animation de transition de largeur */
+.width-transition {
+  transition: width 0.5s ease;
+}
+
+/* États de largeur spécifiques pour le conteneur */
+.col-lg-10-animated, .col-lg-12-animated {
+  float: left;
+}
+
+.col-lg-10-animated {
+  width: 83.333333%;
+}
+
+.col-lg-12-animated {
+  width: 100%;
+}
+
+.message{
+  padding-inline: 1px;
+}
+
+body {
+  margin: 2%;
+  font-family: 'Gilroy Light', sans-serif;
+  background-color: $light;
+}
+
+h1{
+    font-family: 'Gilroy Light', sans-serif;
+}
+
+.txt-primary {
+    color: $primary !important;
+}
+
+.bg-primary {
+    background-color: $primary !important;
+}
+
+.txt-secondary {
+    color: $secondary !important;
+}
+
+.bg-secondary {
+    background-color: $secondary !important;
+}
+
+.txt-dark {
+    color: $dark !important;
+}
+
+.bg-dark {
+    background-color: $dark !important;
+}
+
+.txt-danger {
+    color: $danger !important;
+}
+
+.bg-danger {
+    background-color: $danger !important;
+}
+
+.txt-light {
+    color: $light !important;
+}
+
+.bg-light {
+    background-color: $light !important;
+}
+
+.swal2-popup {
+    background-color: $light;
+    border-radius: 14px;
+
+    input{
+        background-color: $light;
+        border-color: $primary;
+        border-style: dashed;
+        color:$primary;
+    }
+    input::placeholder {
+      color: $primary;
+    }
+}
+.swal2-input:focus {
+  border: none !important;
+  outline: none !important;
+}
+.swal2-popup > h2{
+    color: $primary;
+    font-weight: bolder;
+}
+
+.fa-hourglass-start{
+  color: $primary !important;
+}
+.search-icon {
+  position: relative;
+  left: -30px;
+  color: $light;
+  //cursor: pointer;
+}
+
+
+.btn-primary{
+  background-color: $primary !important;
+  transition: all $tl;
+  border-radius: 14px !important;
+}
+
+.btn-primary:hover{
+  scale: 1.1;
+}
+
+.swal2-cancel{
+  background-color: $danger !important;
+  border: 14px !important;
+}
+
+//lune
+#theme-icon{
+  color:$lune !important;
+}
+.fa-moon:hover{
+  animation: rotate 2s infinite;
+  animation: neon 1.5s ease-in-out infinite alternate;
+}
+
+.fa-sun:hover{
+  animation: rotate 2s infinite;
+  animation: neon2 1.5s ease-in-out infinite alternate;
+}
+
+.search-box {
+  transition: width $tl, border-radius $tl, background $tl, box-shadow $tl;
+  width: 40px;
+  height: 40px;
+  border-radius: 14px;
+  border: none; 
+  color: $light !important;
+  background: $primary;
+  //cursor: pointer; 
+  scale: $navbtn-size;
+  & + label .search-icon {
+    color: $light;
+  }
+  &:hover {
+    color: $primary;
+    background: $light;
+    box-shadow: 0 0 0 5px $primary;
+    & + label .search-icon {
+      color: $primary;
+    }
+  }
+  &:focus {
+    transition: width $tl cubic-bezier(0, 1.22, .66, 1.39), border-radius $tl, background $tl;
+    border: none;
+    outline: none;
+    box-shadow: none;
+    padding-left: 15px;
+    //cursor: text;
+    width: 300px;
+    border-radius: 14px;
+    background: $primary;
+    color: $dark;
+    & + label .search-icon {
+      color: $light;
+    }
+  }
+  &:not(:focus) {
+    text-indent: -5000px;
+  }
+}
+
+#search-submit {
+  position: relative;
+  left: -5000px;
+}
+
+.navbar{
+  padding: 0 !important;
+}
+.navbar-toggler {
+    border: none;
+}
+
+.menu {
+    position: fixed;
+    top: 0;
+    right: -300px;
+    width: 300px;
+    background-color: $light;
+    transition: all $tl ease;
+    z-index: 1000;
+    transform: translateX(-100%);
+    max-height: 100vh;
+    overflow: auto !important;
+}
+
+/* Style quand le menu est ouvert */
+.menu-open .menu-toggle-btn {
+  left: calc(100% - 50px);
+}
+
+/* Styles pour l'animation du menu */
+.menu-enter-active, .menu-leave-active {
+  transition: all $tl, transform 0.5s;
+}
+
+.menu-enter, .menu-leave-to {
+  opacity: 0;
+  transform: translateX(10%);
+}
+
+.menu-list {
+  list-style-type: none;
+  padding: 0;
+  transition: all $tl ease;
+}
+
+.menu-list li {
+  padding: 10px;
+}
+
+.menu-list li:hover {
+  background-color: $light;
+}  
+
+.show-menu .menu {
+    right: 0;
+    transition: all $tl ease;
+}
+
+.leaflet-container{
+  border-radius: 14px !important;
+}
+
+.leaflet-top, .leaflet-bottom {
+    display: none;
+}
+
+.leaflet-popup-content-wrapper {
+    border-radius: 14px;
+}
+
+.leaflet-container a.leaflet-popup-close-button {
+    font-size: 1.5em;
+    color: $light;
+    background-color: $danger;
+    border-radius: 50%;
+    width: 1.2em; 
+    height: 1.2em; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: -2%;
+    margin-right: 0%;
+}
+
+.leaflet-container a.leaflet-popup-close-button:hover {
+    color: $danger;
+    background-color: $light;
+    text-shadow: -1px 0 $dark, 0 1px $dark, 1px 0 $dark, 0 -1px $dark;
+}
+
+.leaflet-container a.leaflet-popup-close-button::before {
+    content: ''; 
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: $primary; 
+    border-radius: 50%;
+    z-index: -1; 
+}
+
+.leaflet-popup-content{
+    font-family: 'Gilroy Light', sans-serif;
+    text-align: center;
+}
+
+.theme-toggle-button {
+    background: transparent;
+    border: none;
+    z-index: 1001;
+}
+  
+.theme-toggle-button:focus {
+    outline: none;
+}
+
+.map {
+    transition: width $tl ease;
+}
+
+.l-map-container {
+  z-index: 0;
+  height: $map-height-desktop;
+
+  @media (max-width: $breakpoint-mobile) {
+    height: $map-height-mobile;
+    margin-bottom: 10%;
+  }
+}
+
+#mapselector {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 1000;
+    background-color: $secondary;
+    color: $light;
+    padding: 5px;
+    border-radius: 14px !important;
+    border-color: transparent;
+    transition: all $tl;
+    
+    &:hover {
+      color: $secondary;
+      background: $light;
+      box-shadow: 0 0 0 5px $secondary;
+      & + label .search-icon {
+        color: $secondary;
+      }
+    }
+}
+
+.popup_titre{
+    color: $primary;
+    font-size: 1.6em;
+    font-weight: 800;
+}
+
+.menu-slide-enter-active, .menu-slide-leave-active {
+    transition: all $tl ease;
+}
+.menu-slide-enter, .menu-slide-leave-to {
+    transform: translateX(100%);
+}
+  
+.map-container {
+    transition: margin-left $tl ease;
+}
+  
+#btn_list{
+    margin-right: 1.5em;
+    background-color: $secondary;
+    color: $light;
+    border-radius: 14px;
+    transition: all $tl;
+    scale: $navbtn-size;
+
+    &:hover {
+      color: $secondary;
+      background: $light;
+      box-shadow: 0 0 0 5px $secondary;
+      & + label .search-icon {
+        color: $secondary;
+      }
+    }
+}
+
+#openWaze{
+  background-color: $wazecolor !important;
+  background-image: url('./assets/img/waze.png');
+  background-size: contain;
+  background-repeat: no-repeat; 
+  height: 4em;
+  width: 4em;
+}
+
+#openGoogleMaps{
+  background-color: $light !important;
+  color: $dark !important;
+  background-image: url('./assets/img/google-map.png');
+  background-size: contain;
+  background-repeat: no-repeat; 
+  height: 4em;
+  width: 4em;
+}
+
+.card{
+    border-radius: 0 !important;
+    transition: all $tl ease-in;
+}
+
+.card:hover{
+    background-color: $primary;
+
+  p {
+    color: $light;
+    font-family: 'Gilroy ExtraBold';
+  }
+  h5 {
+    transition: all $tl ease-out;
+    color: $light;
+  }
+  button{
+    background-color: $light !important;
+    color: $primary !important;
+  }
+  }
+
+  .badge-icon {
+    width: 30px; 
+    height: auto;
+  }
+
+  .btn-reset {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+    background-color: $light;
+    border-radius: 14px;
+    background-color: $primary;
+    color: $light;
+    transition: all $tl;
+
+    &:hover {
+      color: $primary;
+      background: $light;
+      box-shadow: 0 0 0 5px $primary;
+      & + label .search-icon {
+        color: $primary;
+      }
+    }
+  }
+  .btn-reset:hover{
+    background-color: $light;
+    color: $primary;
+  }
+
+  .btn-reset i {
+    font-size: 20px;
+  }
+
+  .suggestions-container {
+    position: absolute;
+    margin-top: 1%;
+    margin-left: -3%;
+    width: 20%; 
+    border-radius: 0 0 5px 5px; 
+    z-index: 10000;
+    background-color: $light; 
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      background-color: $light; 
+      z-index: 10000;
+  
+      li {
+        padding: 10px;
+        transition: background-color $tl;
+        color: $primary;
+        background-color: $light;
+        transition: all $tl;
+        z-index: 10000;
+  
+        &:hover {
+          color: $light; 
+          background-color: $primary;
+        }
+      }
+    }
+  }
+
+  .stats{
+    position: absolute;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around; 
+    height: 15%;
+    bottom: 20px;
+    left: 7.5%;
+    align-items: center;
+    background-color: $light;
+    font-family: 'Gilroy Light', sans-serif;
+    font-weight: bolder;
+    border-radius: 14px;
+    transition: all $tl;
+    backdrop-filter: blur(3px);
+    background-color: rgba($light, 0.7);
+    border: 1px solid rgba($dark, 0.1);
+    box-shadow: 2px 2px 2px rgba($dark, 0.1);
+  }
+
+  .stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    margin: 10px; 
+
+  }
+  .additional-text {
+    text-align: center; 
+    width: 100%; 
+    margin-top: -10px; 
+    p{
+      font-size: small;
+    }
+  }
+
+  .filters {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    align-items: left ;
+    background-color: $light;
+    padding: 1%;
+    font-family: 'Gilroy Light', sans-serif;
+    font-weight: bolder;
+    border-radius: 14px;
+    transition: all $tl;
+    backdrop-filter: blur(3px);
+    background-color: rgba($light, 0.7);
+    border: 1px solid rgba($light, 0.1);
+    box-shadow: 2px 2px 2px rgba($dark, 0.1);
+    
+    &:hover {
+      background-color: rgba($light, 0.9);
+      border: 1px solid rgba($light, 0.3);
+    }
+
+
+    h1{
+      color: $primary;
+      font-family: 'Gilroy Light', sans-serif;
+      font-size: 1.9em;
+    }
+  }
+  
+  .filter-option {
+    margin: 1px 0;
+  }
+  
+  .filter-text {
+    text-align: left;
+    margin-bottom: 5px;
+  }
+  
+  .toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 40px; 
+    height: 22px; 
+  }
+  
+  .toggle-switch input { 
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  .slider {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: $danger; // couleur du toggler fermé
+    transition: $tl;
+    border-radius: 22px;
+  }
+  
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    left: 2px;
+    bottom: 2px;
+    background-color: $light;
+    transition: $tl;
+    border-radius: 50%;
+  }
+  
+  input:checked + .slider {
+    background-color: $primary;
+  }
+
+  #jardin:checked + .slider{
+    background-color: $secondary !important;
+  }
+
+  #monument:checked + .slider{
+    background-color: $primary !important;
+  }
+
+  input:checked + .slider:before {
+    transform: translateX(18px);
+  }
+  
+  .round {
+    border-radius: 14px;
+  }
+  /*Fin mode claire */
+
+  /* Mode sombre */ 
+  .dark-mode {
+    background-color: $dark; 
+    color: $light; 
+      
+    #splashScreen{
+      background-color: $dark;
+    }
+    body #magicMouseCursor{
+      border-color: $primary !important;
+      border-width: 3px;
+      //box-shadow: 0 0 0 5px $dark !important;
+    }
+    .fa-hourglass-start{
+      color: $primary !important;
+    }
+
+    body {
+      background-color: $dark !important;
+      color: $light !important;
+    }
+
+    .stats{
+      background-color: $dark;
+      border: 1px solid rgba($light, 0.1);
+      box-shadow: 0px 0px 0px 0px rgba($light, 0.1);
+    }
+  
+    .card {
+      background-color: $dark !important; 
+      color: $light;
+  
+      .card-title, .card-text {
+        color: $light; 
+      }
+    }
+
+    .card:hover{
+      background-color: $primary !important;
+    }
+  
+    .search-box{
+        &:hover{
+          background-color: $primary!important;
+          & + label .search-icon {
+            color: $primary;
+          }
+        }
+    }
+
+    #btn_list{
+      &:hover{
+        background-color: $dark!important;
+        & + label .search-icon {
+          color: $secondary;
+        }
+      }
+    }
+    #mapselector{
+      &:hover{
+        background-color: $dark!important;
+        & + label .search-icon {
+          color: $secondary;
+        }
+      }
+    }
+
+    .swal2-popup > h2, .popup_titre, .filters h1 {
+      color: $light !important; 
+    }
+  
+    .bg-primary, .menu, .toggle-switch input:checked + .slider {
+      background-color: $secondary !important;
+    }
+  
+    .txt-danger, .leaflet-container a.leaflet-popup-close-button, .btn-reset, .btn-primary {
+      color: $light !important;
+    }
+  
+    .bg-danger, .leaflet-container a.leaflet-popup-close-button:hover {
+      background-color: $primary !important; 
+    }
+  
+  .btn-primary:hover, .btn-reset:hover {
+      background: $dark !important;
+      color: $light !important; 
+    }
+  
+    .search-icon, .leaflet-container a.leaflet-popup-close-button {
+      color: $light !important; 
+    }
+  
+    .suggestions-container, .filters {
+      background-color: $dark; 
+      color: $light; 
+    }
+  
+    .slider {
+      background-color: $light; 
+    }
+  
+    .slider:before {
+      background-color: $dark; 
+    }
+
+    //Soleil
+    #theme-icon{
+      color: $soleil !important;
+    }
+
+    .popup-txt {
+      color: $light !important;
+    }
+    .leaflet-popup-content-wrapper{
+      background-color: $dark !important;
+    }
+    .leaflet-popup-tip{
+      color: light !important;
+    }
+
+    .swal2-popup{
+      background-color: $dark !important;
+      .swal2-input{
+        background-color: $dark;
+      }
+    }
+
+    .suggestions-container ul li {
+      background-color: $dark !important;
+    }
+    @media (max-width: $breakpoint-mobile) {
+      #sr-zone{
+        display: none !important;
+      }
+    }
+  }
+  /* Fin Mode sombre */
+  
+
+  // Vues mobiles
+@media (max-width: $breakpoint-mobile) {
+
+  .l-map-container{
+    margin-bottom: 2%;
+    margin-top: -5%;
+  }
+  .navbar{
+    margin-bottom: 2% !important;
+    margin-top: 100%;
+  }
+  
+  .navbar-brand {
+    margin-left: 1.5em;
+  }
+
+  #sr-zone{
+    display: none !important;
+  }
+  .stats{
+    display: flex;
+    align-items: center;
+    justify-content: center;  }
+}
+
+/* Animations */
+
+@keyframes rotate{
+  0%{
+    transform: rotate(0deg);
+  }
+  100%{
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes neon {
+  from {
+    text-shadow: 0 0 20px $lune, 0 0 30px $lune, 0 0 40px $lune, 0 0 50px $lune;
+  }
+}
+@keyframes neon2 {
+  from {
+    text-shadow: 0 0 20px $soleil, 0 0 30px $soleil, 0 0 40px $soleil, 0 0 50px $soleil;
+  }
+}
+
+/* Fin animations */
