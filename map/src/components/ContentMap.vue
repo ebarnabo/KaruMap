@@ -224,7 +224,7 @@ export default {
   },
   computed: {
     tileLayerUrl() {
-      return `https://{s}.tile.jawg.io/${this.currentStyle}/{z}/{x}/{y}{r}.png?access-token=si8sl9pjFXL4H8PHv5ZjtXebofnvIybSsVqk3WxdmC8dyCI3UXZOe9hQQ8kbWKGE`;
+      return `https://{s}.tile.jawg.io/${this.currentStyle}/{z}/{x}/{y}{r}.png?access-token=${process.env.VUE_APP_JAWG_MAPS_ACCESS_TOKEN}`
     },
     filteredMarqueurs() {
     return this.Marqueurs.filter(marqueur => {
