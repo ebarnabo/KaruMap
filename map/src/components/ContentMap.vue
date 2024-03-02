@@ -362,12 +362,12 @@ export default {
   try {
     console.log('Début de l\'importation des données...');
     await Promise.all([
-      axios.get('${process.env.VUE_APP_API_URL}jardins'),
-      axios.get('${process.env.VUE_APP_API_URL}monuments')
+    axios.get(`${process.env.VUE_APP_API_URL}/jardins`),
+    axios.get(`${process.env.VUE_APP_API_URL}/monuments`)
     ]);
     console.log('Import des données OK');
     
-    const marqueurs_données = await axios.get('${process.env.VUE_APP_API_URL}marqueurs');
+    const marqueurs_données = await axios.get(`${process.env.VUE_APP_API_URL}/marqueurs`);
     console.log('Récupération des données des marqueurs OK', marqueurs_données.data);
 
     this.Marqueurs = marqueurs_données.data.map((marqueur) => {
@@ -391,7 +391,7 @@ export default {
     async Import_data() {
           try {
         console.log('Début de l\'importation des données des marqueurs...');
-        const marqueurs_données = await axios.get('${process.env.VUE_APP_API_URL}marqueurs');
+        const marqueurs_données = await axios.get(`${process.env.VUE_APP_API_URL}/marqueurs`);
         console.log('Récupération des données des marqueurs OK', marqueurs_données.data);
 
         this.Marqueurs = marqueurs_données.data.map((marqueur) => {
@@ -463,7 +463,7 @@ export default {
     },
     Marqueur_Update(originalName) {
       const { name, code_postal, commune, type } = this.Marqueur_Select;
-      axios.put(`${process.env.VUE_APP_API_URL}marqueurs/${originalName}`, {
+      axios.put(`${process.env.VUE_APP_API_URL}/marqueurs/${originalName}`, {
         new_nom: name,
         new_code_postal: code_postal ,
         new_commune: commune,
@@ -497,7 +497,7 @@ export default {
       }).then((result) => {
         if (result.isConfirmed) {
           this.Marqueurs.splice(index, 1);
-          axios.delete(`${process.env.VUE_APP_API_URL}marqueurs/${currentMarker.name}`)
+          axios.delete(`${process.env.VUE_APP_API_URL}/marqueurs/${currentMarker.name}`)
             .then(() => {
               console.log('Suppression Marqueur OK');
               this.calculateStats();
@@ -610,8 +610,7 @@ export default {
         return;
       }
       console.log("Type de marqueur :", this.Marqueur_Select.type);
-      axios
-        .post(`${process.env.VUE_APP_API_URL}marqueurs`, {
+      axios.post(`${process.env.VUE_APP_API_URL}marqueurs`, {
           type: this.Marqueur_Select.type,
           nom: this.Marqueur_Select.name,
           latitude: this.Marqueur_Select.coordinates[0],
