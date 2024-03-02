@@ -185,8 +185,44 @@ export default {
     document.addEventListener('click', this.handleOutsideClick);
     document.addEventListener('click', this.gererClicDocument);
     this.initMagicMouse();
-    console.log(process.env.VUE_APP_API_URL);
 
+    // verif variables // 
+    console.log("Vérification détaillée des variables d'environnement :");
+
+// Fonction pour valider le format d'une URL
+function isValidHttpUrl(string) {
+  let url;
+  
+  try {
+    url = new URL(string);
+  } catch (_) {
+    return false;  
+  }
+
+  return url.protocol === "http:" || url.protocol === "https:";
+}
+
+// Liste des clés attendues pour les variables d'environnement
+const expectedEnvKeys = [
+  { key: 'VUE_APP_API_URL', description: 'URL de base de l\'API' },
+  { key: 'VUE_APP_API_MARKERS', description: 'Endpoint pour les marqueurs' },
+  { key: 'VUE_APP_API_GARDENS', description: 'Endpoint pour les jardins' },
+  { key: 'VUE_APP_API_MONUMENTS', description: 'Endpoint pour les monuments' },
+];
+
+expectedEnvKeys.forEach(({ key, description }) => {
+  const value = process.env[key];
+  console.log(`${key} (${description}):`, value);
+
+  if (!value) {
+    console.warn(`⚠️ La variable ${key} est manquante.`);
+  } else if (!isValidHttpUrl(value)) {
+    console.warn(`⚠️ La valeur de ${key} n'est pas une URL valide.`);
+  } else {
+    console.log(`✅ ${key} est correctement configurée.`);
+  }
+});
+// Fin vérif variables // 
 },
   data() {
     return {
