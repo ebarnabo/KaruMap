@@ -162,8 +162,6 @@ const monumentIcon = L.icon({
   iconUrl: require('../assets/img/muse.png'), 
   iconSize: [largeurIcone, hauteurIcone],
 });
-console.log(process.env.VUE_APP_API_URL);
-
 
 export default {
   name: 'KaruData',
@@ -187,6 +185,8 @@ export default {
     document.addEventListener('click', this.handleOutsideClick);
     document.addEventListener('click', this.gererClicDocument);
     this.initMagicMouse();
+    console.log(process.env.VUE_APP_API_URL);
+
 },
   data() {
     return {
