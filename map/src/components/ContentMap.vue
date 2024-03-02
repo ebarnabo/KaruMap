@@ -205,9 +205,8 @@ function isValidHttpUrl(string) {
 // Liste des clés attendues pour les variables d'environnement
 const expectedEnvKeys = [
   { key: 'VUE_APP_API_URL', description: 'URL de base de l\'API' },
-  { key: 'VUE_APP_API_MARKERS', description: 'Endpoint pour les marqueurs' },
-  { key: 'VUE_APP_API_GARDENS', description: 'Endpoint pour les jardins' },
-  { key: 'VUE_APP_API_MONUMENTS', description: 'Endpoint pour les monuments' },
+  { key: 'API_JARDINS_URL', description: 'Endpoint pour les jardins' },
+  { key: 'API_MONUMENTS_URL', description: 'Endpoint pour les monuments' },
 ];
 
 expectedEnvKeys.forEach(({ key, description }) => {
